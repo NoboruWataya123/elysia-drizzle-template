@@ -2,14 +2,31 @@
   "name": "template-elysia",
   "version": "1.0.50",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "bun run --watch src/index.ts"
+    "dev": "bun run --watch src/index.ts",
+    "build": "bun build ./src/index.ts --outdir ./dist",
+    "start": "bun run ./dist/index.js",
+    "test": "NODE_ENV=test bun test",
+    "test:setup": "bun run db:migrate",
+    "db:migrate": "bun run drizzle-kit push:pg",
+    "db:seed": "bun run src/db/seeds/initial.ts",
+    "db:setup": "bun run db:migrate && bun run db:seed",
+    "lint": "eslint src/**/*.ts",
+    "format": "prettier --write src/**/*.ts"
   },
   "dependencies": {
-    "elysia": "latest"
+    "@elysiajs/jwt": "^1.2.0",
+    "@elysiajs/swagger": "^1.2.0",
+    "@types/jsonwebtoken": "^9.0.8",
+    "drizzle-orm": "^0.39.3",
+    "drizzle-typebox": "^0.3.0",
+    "elysia": "latest",
+    "jsonwebtoken": "^9.0.2",
+    "postgres": "^3.4.5"
   },
   "devDependencies": {
-    "bun-types": "latest"
+    "bun-types": "latest",
+    "drizzle-kit": "^0.30.4",
+    "tsx": "^4.19.2"
   },
   "module": "src/index.js"
 }
