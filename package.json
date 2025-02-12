@@ -7,7 +7,7 @@
     "start": "bun run ./dist/index.js",
     "test": "NODE_ENV=test bun test",
     "test:setup": "bun run db:migrate",
-    "db:migrate": "bun run drizzle-kit push:pg",
+    "db:migrate": "bun run drizzle-kit push",
     "db:seed": "bun run src/db/seeds/initial.ts",
     "db:setup": "bun run db:migrate && bun run db:seed",
     "lint": "eslint src/**/*.ts",
